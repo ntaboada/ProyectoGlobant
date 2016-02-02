@@ -3,41 +3,34 @@ import java.util.Scanner;
 
 
 public class Login {
-
+	private String user;
+	private String password;
 	
-	public void registerUser(){
-		
+	
+	public Login (String user, String password){
+		this.user = user;
+		this.password = password;
 	}
 	
-	public static void showMenu(){
-		int userOption;
-		Scanner scan = new Scanner(System.in);
-		
-		
-		System.out.println("¡¡¡Welcome to the Comic loan catalog!!!");
-		
-		System.out.println("Select your option: ");
-		System.out.println("1) Log In");
-		System.out.println("2) Visualize Comic Catalog");
-		System.out.println("3) Exit");
-		
-		System.out.println("Your option: ");
-		userOption = scan.nextInt();
-		
-		
-		switch (userOption) {
-		case 1:
-			
-			break;
-
-		default:
-			break;
-		}
-		
-		
-		
-		
+	public String getUser() {
+		return user;
 	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	
+	
+
 	
 	
 }
