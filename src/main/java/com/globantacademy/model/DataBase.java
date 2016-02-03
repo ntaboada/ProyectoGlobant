@@ -20,27 +20,20 @@ public class DataBase {
 		users.add(user);
 	}
 	
-	public static User lookForUser(){
-		
+	public static User lookForUser(String username){
+		User userFound = null;
 		Iterator<User> iterator = users.iterator();
 		
 		while (iterator.hasNext()) {
 			
-			User user = (User) iterator.next();
+			User user =  iterator.next();
+			
+			if (username.equals(user.getUsername())){
+				userFound = user;
+			}
 			
 		}
-		
-		
-		/*
-		 * Set<Foo> set = new HashSet<Foo>();
-    set.add(new Foo("Hello"));
-
-    for (Iterator<Foo> it = set.iterator(); it.hasNext(); ) {
-        Foo f = it.next();
-        if (f.equals(new Foo("Hello")))
-            System.out.println("foo found");
-    }
-		 */
+		return userFound;
 	}
 	
 }
