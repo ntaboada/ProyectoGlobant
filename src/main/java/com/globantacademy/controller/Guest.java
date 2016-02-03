@@ -1,27 +1,24 @@
 package com.globantacademy.controller;
 
-import java.security.InvalidParameterException;
-import java.util.Scanner;
 
-import com.globantacademy.model.UserNotFoundException;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import com.globantacademy.view.App;
 import com.globantacademy.view.Login;
 
-public class Guest {
-	
-	
-	public void menuOptions(){
+public class Guest extends UserType{
 
-		System.out.println("Select your option: ");
-		System.out.println("1) Log In");
-		System.out.println("2) Visualize Comic Catalog");
-		System.out.println("3) Exit");
-		System.out.println("----------------------------------------");
-		System.out.println("Your option: ");
-		
+	private String[] arrOptionsGuest  = {"1) Log In", "2) Visualize Comic Catalog", "3) Exit"};
+	
+	
+	public String[] getArrOptions() {
+		return arrOptionsGuest;
 	}
+
+
 	
 	public void userOption(int userOption){
-		
+
 		switch (userOption) {
 			
 			case 1:
@@ -42,34 +39,50 @@ public class Guest {
 	public void logIn(){
 		
 		Scanner scan = new Scanner(System.in);
-		String user;
-		String password;
-		boolean loginValidation;
-		
-		System.out.println("Enter your credentials");
-		System.out.println("----------------------");
-		System.out.println("User: ");
-		user = scan.nextLine(); 
-		System.out.println("Password:");
-		password = scan.nextLine();
-		
 	
-		try {
-			loginValidation = Login.logValidation(user, password);
+		System.out.println("----------------------------------------");
+		System.out.println("Select your option: ");
+		System.out.println("1) Enter your credentials");
+		System.out.println("2) Return ");
+		System.out.println("----------------------------------------");
+		System.out.println("Your option: ");
+		
+		switch (scan.nextInt()) {
+		case 1:
+			String user;
+			String password;
+			boolean loginValidation;
 			
-			if(loginValidation){
+			System.out.println("User: ");
+			user = scan.next(); 
+			System.out.println("Password:");
+			password = scan.next();
+			
+		
+			try {
+				//Valido datos en mi Login
+				loginValidation = Login.logValidation(user, password);
 				
+				if(loginValidation){
+					
+				}
+				else{
+					System.out.println("Login Failed. Rewrite your credentials.");
+					
+					this.logIn();
+				}
+				
+			} catch(InputMismatchException ex){
+				System.out.println(ex.getMessage());
 			}
-			else{
-				System.out.println("Try Again");
-				this.logIn();
-			}
-			
-		} catch (InvalidParameterException e) {
-			System.out.println(e.getMessage());
-		} catch (UserNotFoundException e) {
-			System.out.println(e.getMessage());
+	
+			break;
+
+		case 2:
+			App.welcome();
+			break;
 		}
+		
 		
 		
 	}

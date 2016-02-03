@@ -1,16 +1,14 @@
 package com.globantacademy.view;
-import java.security.InvalidParameterException;
-
 import com.globantacademy.controller.User;
 import com.globantacademy.model.DataBase;
-import com.globantacademy.model.UserNotFoundException;
+
 
 
 public class Login {
 	
 	
 
-	public static boolean logValidation(String username, String password) throws InvalidParameterException, UserNotFoundException{
+	public static boolean logValidation(String username, String password) {
 		
 		
 		boolean permissionAccepted = false;
@@ -30,19 +28,8 @@ public class Login {
 			}
 			else {
 				permissionAccepted = false;
-				}
+			}
 			}
 		return permissionAccepted;
 		}
-		/*
-		 * catch(UserNotFoundException ex){
-		
-			System.out.println(ex.getMessage());
-		}
-		catch(InvalidParameterException ex){
-			System.out.println(ex.getMessage());
-		}
-		throw new InvalidParameterException("Your credentials dont match");
-		throw new UserNotFoundException("User doest not exist in our DB");
-		 */
-}
+

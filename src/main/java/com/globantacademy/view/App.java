@@ -2,12 +2,27 @@ package com.globantacademy.view;
 
 import java.util.Scanner;
 
-import com.globantacademy.controller.InvalidInputException;
+import com.globantacademy.controller.Guest;
 import com.globantacademy.controller.NoAdmin;
 import com.globantacademy.controller.User;
+import com.globantacademy.controller.UserType;
 import com.globantacademy.model.DataBase;
 
 public class App {
+
+	public static void welcome() {
+		System.out.println("¡Welcome to the Comic loan catalog!");
+		boolean showMenu = true;
+
+		do {
+				UserType guest = new Guest();
+				User guestUser = new NoAdmin(guest);
+				guestUser.showMenuOptions();
+				guestUser.userSelectOption(guestUser);
+		}
+		
+		while (showMenu);
+	}
 
 	public static void main(String[] args) {
 
@@ -17,37 +32,8 @@ public class App {
 		DataBase.addUser(oneUser);
 		DataBase.addUser(secondUser);
 
-		System.out.println("¡Welcome to the Comic loan catalog!");
-
-		int userOption;
-		boolean showMenu = true;
-		Scanner scan = new Scanner(System.in);
-
+		welcome();
 		
-		
-		do{
-			try {
 
-				NoAdmin guestUser = new NoAdmin();
-				guestUser.menuOptions();
-
-				if (scan.hasNextInt()) {
-					userOption = scan.nextInt();
-					guestUser.userOption(userOption);
-
-				} else {
-					throw new InvalidInputException("'"+ scan.next()+ "'" +" is not a valid Input. Try again");
-				}
-			} catch (InvalidInputException ex) {
-				System.out.println(ex.getMessage());
-			}
-			
-		}
-		
-		while (showMenu);
-		
-		scan.close();
-
-	}
-
+}
 }

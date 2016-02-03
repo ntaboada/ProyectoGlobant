@@ -1,31 +1,32 @@
 package com.globantacademy.controller;
 
+import java.util.Arrays;
+
 public class NoAdmin extends User {
 	
 	
-	private Guest type; 
+	private UserType type;
 	
-	public NoAdmin(String user, String password){
-		super(user, password);
+
+	
+	public NoAdmin(UserType type){
+		this.type=type;
+		arrOptions = Arrays.copyOfRange(type.getArrOptions(), 0, type.getArrOptions().length);
 	}
 	
-	public NoAdmin(){
-		type = new Guest();
-	}
-	
-	public Guest getType() {
+	public UserType getType() {
 		return type;
 	}
 
-	public void setType(Guest type) {
+	public void setType(UserType type) {
 		this.type = type;
 	}
 
-	public void menuOptions(){
-
-		type.menuOptions();
-		
+	
+	public void showMenuOptions(){
+		super.showMenuOptions(type.getArrOptions());
 	}
+	
 	
 	public void userOption(int userOption){
 		type.userOption(userOption);
