@@ -1,13 +1,14 @@
 package com.globantacademy.controller;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import com.globantacademy.controller.InvalidInputException;
+import com.globantacademy.resources.InvalidInputException;
 import com.globantacademy.view.App;
 
 public abstract class User  {
 	
-	private String username;
-	private String password;
+	protected String username;
+	protected String password;
 	protected String[] arrOptions;
 	
 	public User(){
@@ -19,6 +20,12 @@ public abstract class User  {
 		this.password = password;
 	}
 	
+	public boolean adminPriviliges(){
+		if(username.equals("Sheldon")&&  password.equals("Bazzinga")){
+			return true;
+		}
+		return false;
+	}
 	
 	public String getUsername() {
 		return username;
@@ -33,11 +40,6 @@ public abstract class User  {
 		this.password = password;
 	}
 	
-	public void returnHome(){
-		App.welcome();
-	}
-	
-	
 	//Muestro el los Strings con las opciones disponibles
 	public void showMenuOptions(){
 		
@@ -51,25 +53,26 @@ public abstract class User  {
 	}
 
 	//Llamo a un scanner con la opcion seleccionada del User
-	public void userSelectOption(User user){
+	public boolean userSelectOption(User user, boolean showMenu){
 		Scanner scan = new Scanner(System.in);
 		int option;
 		
-		try{	
-			if (scan.hasNextInt()) {
-				option = scan.nextInt();
-				user.userOption(option);
-
-			} else {
-				throw new InvalidInputException("'" + scan.next() + "'" + " is not a valid Input. Try again");
-				}
-			}catch (InvalidInputException ex) {
-				System.out.println(ex.getMessage());}
-	
+		while (scan.hasNext()) {
+			try{
+			option = scan.nextInt();
+			user.userOption(option);
+			showMenu = false;
+			return showMenu;
+			}
+			catch(NoSuchElementException ex){
+				System.out.println(ex.getMessage());
+			}
+		}
 		scan.close();
+		return showMenu;
 	}
 
 	//Llama a los metodos para la opcion seleccionada
-	public abstract void userOption(int option);
-	
+	public abstract void  userOption(int option);
+	public abstract void  changeUserType();
 }

@@ -16,11 +16,21 @@ public class DataBase {
 	
 	
 	
-	public static void addUser(User user){
-		users.add(user);
+public static boolean addUser(User user){
+		
+		if(DataBase.lookForUser(user.getUsername())==null)
+		{	
+			users.add(user);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 	
-	public static User lookForUser(String username){
+public static User lookForUser(String username){
 		User userFound = null;
 		Iterator<User> iterator = users.iterator();
 		
@@ -36,4 +46,33 @@ public class DataBase {
 		return userFound;
 	}
 	
+public static boolean deleteUser(String user){
+	
+	
+	if(DataBase.lookForUser(user)!=null)
+	{	
+		users.remove(DataBase.lookForUser(user));
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+public static boolean modifyUser(String oldUser, String newUser, String newPassword){
+	
+	if(DataBase.lookForUser(oldUser)!=null)
+	{	
+		DataBase.lookForUser(oldUser).setUsername(newUser);
+		DataBase.lookForUser(oldUser).setPassword(newPassword);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
+}
+
 }

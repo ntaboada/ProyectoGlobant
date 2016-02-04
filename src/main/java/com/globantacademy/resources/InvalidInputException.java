@@ -1,4 +1,4 @@
-package com.globantacademy.controller;
+package com.globantacademy.resources;
 
 public class InvalidInputException extends Exception{
 	

@@ -3,8 +3,9 @@ package com.globantacademy.controller;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
-
+import com.globantacademy.model.DataBase;
 import com.globantacademy.view.App;
 import com.globantacademy.view.Login;
 
@@ -25,7 +26,7 @@ public class Guest extends UserType{
 
 
 	
-	public void userOption(int userOption){
+	public void userOption(int userOption) {
 
 		switch (userOption) {
 			
@@ -33,14 +34,11 @@ public class Guest extends UserType{
 				this.logIn();
 				break;
 			case 2:
-				
-				break;
-			case 3:
-				
-				break;
+				return;
 			default:
 				break;
 		}
+		
 	}
 	
 	
@@ -59,45 +57,38 @@ public class Guest extends UserType{
 		case 1:
 			String user;
 			String password;
-			boolean loginValidation;
 			
 			System.out.println("User: ");
 			user = scan.next(); 
 			System.out.println("Password:");
 			password = scan.next();
 			
-		
-			try {
-				//Valido datos en mi Login
-				loginValidation = Login.logValidation(user, password);
+			Login.loginToTCatalog(user, password);
 				
-				if(loginValidation){
-					
-				}
-				else{
-					System.out.println("Login Failed. Rewrite your credentials.");
-					
-					this.logIn();
-				}
-				
-			} catch(InputMismatchException ex){
-				System.out.println(ex.getMessage());
+			if(Login.userLogged!=null){
+				return;
 			}
-	
+			else{
+				System.out.println("Login Failed. Rewrite your credentials.");
+			this.logIn();
+			}
 			break;
-
+	
 		case 2:
 			UserType guest = new Guest();
 			User guestUser = new NoAdmin(guest);
-			App.interactingWithUser(guestUser);
+			App.interactingWithUser(guestUser, true);
 			break;
 		}
+		
+	
 		
 		
 		
 	}
 	
-	
-
+	public  UserType changeUserType(){
+		return new Registered();
+	}
 }
 

@@ -6,13 +6,18 @@ import java.util.Arrays;
 public class Registered extends UserType{
 	
 	private String[] arrOptionsRegistered  = {"1) Visualize Comic Catalog", "2) Make a loan", "3) Finish a Loan", "4) Exit"};
-	private ArrayList <Loan> comicLoans = new ArrayList <Loan> ();
+	private ArrayList<Loan> comicLoans = new ArrayList<Loan> ();
 	
 
+	
 	
 	public Registered(){
 		arrOptions =  Arrays.copyOfRange(arrOptionsRegistered, 0, arrOptionsRegistered.length);
 	}
+	
+	
+	
+	
 	public ArrayList<Loan> getComicLoans() {
 		return comicLoans;
 	}
@@ -37,6 +42,10 @@ public class Registered extends UserType{
 	public void userOption(int userOption) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public UserType changeUserType() {
+		return new Guest();
 	}
 
 	
