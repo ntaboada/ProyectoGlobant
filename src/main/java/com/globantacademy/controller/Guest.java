@@ -1,14 +1,22 @@
 package com.globantacademy.controller;
 
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import com.globantacademy.view.App;
 import com.globantacademy.view.Login;
 
 public class Guest extends UserType{
 
 	private String[] arrOptionsGuest  = {"1) Log In", "2) Visualize Comic Catalog", "3) Exit"};
+	
+	
+	
+	public Guest(){
+		arrOptions =  Arrays.copyOfRange(arrOptionsGuest, 0, arrOptionsGuest.length);
+	}
 	
 	
 	public String[] getArrOptions() {
@@ -79,7 +87,9 @@ public class Guest extends UserType{
 			break;
 
 		case 2:
-			App.welcome();
+			UserType guest = new Guest();
+			User guestUser = new NoAdmin(guest);
+			App.interactingWithUser(guestUser);
 			break;
 		}
 		

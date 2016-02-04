@@ -24,7 +24,7 @@ public class NoAdmin extends User {
 
 	
 	public void showMenuOptions(){
-		super.showMenuOptions(type.getArrOptions());
+		super.showMenuOptions();
 	}
 	
 	

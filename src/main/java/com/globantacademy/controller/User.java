@@ -39,7 +39,8 @@ public abstract class User  {
 	
 	
 	//Muestro el los Strings con las opciones disponibles
-	public void showMenuOptions(String[] arrOptions){
+	public void showMenuOptions(){
+		
 		System.out.println("Select your option: ");
 		for (String option : arrOptions) {
 			System.out.println(option);

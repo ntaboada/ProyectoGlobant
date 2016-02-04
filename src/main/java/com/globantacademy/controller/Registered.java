@@ -1,6 +1,7 @@
 package com.globantacademy.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Registered extends UserType{
 	
@@ -9,7 +10,9 @@ public class Registered extends UserType{
 	
 
 	
-	
+	public Registered(){
+		arrOptions =  Arrays.copyOfRange(arrOptionsRegistered, 0, arrOptionsRegistered.length);
+	}
 	public ArrayList<Loan> getComicLoans() {
 		return comicLoans;
 	}
