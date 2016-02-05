@@ -9,7 +9,7 @@ import com.globantacademy.view.App;
 
 public class Admin extends User{
 
-	private String[] arrOptionsAdmin = {"1) Listar Usuarios", "2) Agregar Usuarios", "3) Eliminar Usuarios", "4) Modificar Usuario", "5) Agregar Comic", "6) Eliminar Comic", "7) Modificar Comic", "8) Agregar Genero","9) Eliminar Genero", "10) Aceptar Prestamos", "11) Rechazar Prestamos", "12) Exit"}; 
+	private String[] arrOptionsAdmin = {"1) Listar Usuarios", "2) Add User", "3) Delete User", "4) Modify User", "5) Add Comic", "6) Delete Comic", "7) Modify Comic", "8) Add Genre","9) Delete Genre", "10) Accept Loans", "11) Reject Loans", "12) Exit"}; 
 	private static Admin adm;
 	
 	

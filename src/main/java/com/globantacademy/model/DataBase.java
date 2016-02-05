@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
+
 import com.globantacademy.controller.Comic;
 import com.globantacademy.controller.Loan;
 import com.globantacademy.controller.User;
@@ -11,9 +13,9 @@ import com.globantacademy.controller.User;
 public class DataBase {
 	
 	public static Set<User> users = new HashSet<User> ();
-	public static ArrayList <Comic> comics = new ArrayList <Comic>();
-	public static ArrayList <Loan> loans = new ArrayList <Loan>();
-	
+	public static TreeSet <Comic> comics = new TreeSet <Comic>();
+	public static TreeSet <Loan> loans = new TreeSet <Loan>();
+	public static TreeSet <Genre> genres = new TreeSet<Genre>;
 	
 	
 public static boolean addUser(User user){
@@ -73,6 +75,16 @@ public static boolean modifyUser(String oldUser, String newUser, String newPassw
 		return false;
 	}
 	
+}
+
+public static void addComic(Comic comic) {
+	if(comic!=null && !comics.add(comic))	comics.stream().filter(s-> s.equals(comic)).forEach(s->s.increaseCopies());
+	
+}
+public static boolean removeComic(Comic comic) {
+	if(comic == null)return false;
+	if(loans.stream().filter(s->s.getComic().equals(comic)).count() >0)return false;
+	return comics.remove(comic);
 }
 
 }
