@@ -34,6 +34,16 @@ public class Guest extends UserType{
 				this.logIn();
 				break;
 			case 2:
+				//ListComicCatalog devuelve la coleccion como ArrayList. Pregunto por su Size == 0
+				if(DataBase.comics.size()!=0)
+				{
+					System.out.println("Comic List: ");
+					DataBase.listComicCatalog();
+				}
+				else {
+					System.out.println("No comics availables in our catalog. Try next time ");
+				}
+
 				return;
 			default:
 				break;
@@ -70,7 +80,7 @@ public class Guest extends UserType{
 			}
 			else{
 				System.out.println("Login Failed. Rewrite your credentials.");
-			this.logIn();
+				this.logIn();
 			}
 			break;
 	

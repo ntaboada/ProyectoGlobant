@@ -1,17 +1,17 @@
 package com.globantacademy.controller;
 
-public class Comic {
+
+
+public class Comic implements Comparable<Comic> {
 	
 	private String title;
-	private String description;
-	private Genre genre;
+	private String genre;
 	private int copies;
 	
 	
-	public Comic(String name, String description, Genre genre) {
-		this.title = name;
+	public Comic(String title, String genre) {
+		this.title = title;
 		this.genre = genre;
-		this.description = description;
 		this.copies = 1;
 	}
 	
@@ -29,16 +29,11 @@ public class Comic {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public Genre getGenre() {
+
+	public String getGenre() {
 		return genre;
 	}
-	public void setGenre(Genre genre) {
+	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
@@ -46,6 +41,7 @@ public class Comic {
 		this.copies++;
 	}
 
+	
 	public boolean decreaseCopies() {
 		if (copies >= 1) {
 			this.copies--;
@@ -53,5 +49,20 @@ public class Comic {
 		}
 		return false;
 	}
+
+	public String toString(){
+		return " Title:" + "'" + title + "'" + " Genre:"+ "'" + genre + "'" + "" + " Copies:" + "'" + copies + "'";
+	}
+
+	@Override
+	public int compareTo(Comic o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
+	
+	
+
+
+
 }

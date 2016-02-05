@@ -13,24 +13,10 @@ import com.globantacademy.controller.User;
 public class DataBase {
 	
 	public static Set<User> users = new HashSet<User> ();
-	public static TreeSet <Comic> comics = new TreeSet <Comic>();
-	public static TreeSet <Loan> loans = new TreeSet <Loan>();
-	public static TreeSet <Genre> genres = new TreeSet<Genre>;
+	public static Set<Comic> comics = new HashSet<Comic> ();
+	public static Set<Loan> loans = new TreeSet <Loan>();
+	public static Set<String> genres = new TreeSet<String> ();
 	
-	
-public static boolean addUser(User user){
-		
-		if(DataBase.lookForUser(user.getUsername())==null)
-		{	
-			users.add(user);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-		
-	}
 	
 public static User lookForUser(String username){
 		User userFound = null;
@@ -46,6 +32,20 @@ public static User lookForUser(String username){
 			
 		}
 		return userFound;
+	}
+	
+public static boolean addUser(User user){
+		
+		if(DataBase.lookForUser(user.getUsername())==null)
+		{	
+			users.add(user);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 	
 public static boolean deleteUser(String user){
@@ -77,14 +77,107 @@ public static boolean modifyUser(String oldUser, String newUser, String newPassw
 	
 }
 
-public static void addComic(Comic comic) {
-	if(comic!=null && !comics.add(comic))	comics.stream().filter(s-> s.equals(comic)).forEach(s->s.increaseCopies());
+
+public static String lookForGenre(String lookedGenre){
+	
+	String genreFound = null;
+	Iterator<String> iterator = genres.iterator();
+	
+	while (iterator.hasNext()) {
+		
+		String genre =  iterator.next();
+		
+		if (genre.equals(lookedGenre)){
+			genreFound = genre;
+		}
+		
+	}
+	return genreFound;
 	
 }
-public static boolean removeComic(Comic comic) {
-	if(comic == null)return false;
-	if(loans.stream().filter(s->s.getComic().equals(comic)).count() >0)return false;
-	return comics.remove(comic);
+
+public static boolean addGenre(String genre){
+	
+	if(DataBase.lookForGenre(genre)==null)
+	{	
+		genres.add(genre);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
+
+public static void addComic(Comic comic) {
+	
+	if(lookForComic(comic.getTitle())==null)	
+	{
+		comics.add(comic);
+	}
+	else
+	{
+		comics.stream().filter(c-> c.getTitle().equals(comic.getTitle())).forEach(c->c.increaseCopies());
+		
+	}
+}
+
+public static Comic lookForComic(String lookedComic){
+	
+	Comic comicFound = null;
+	Iterator<Comic> iterator = comics.iterator();
+	
+	while (iterator.hasNext()) {
+		
+		Comic comic=  iterator.next();
+		
+		if (comic.getTitle().equals(lookedComic)){
+			comicFound = comic;
+		}
+		
+	}
+	
+	return comicFound;
+	
+}
+
+
+public static ArrayList<Comic> listComicCatalog(){
+	ArrayList<Comic> comicArrList = new ArrayList<Comic>(DataBase.comics);
+	int i=0;
+	
+	for (Comic comic : comics) {
+		System.out.println(i++ +"-" + comic );
+	}
+	
+	return comicArrList;
+}
+
+public static ArrayList<User>  listUserCatalog(){
+	ArrayList<User> usersArrList = new ArrayList<User>(DataBase.users);
+	int i=0;
+	
+	for (User user : users) {
+		System.out.println(i++ +"" + user );
+	}
+	
+	
+	return usersArrList;
+}
+
+public static ArrayList<String> listComicGenres(){
+	
+	int i=0;
+	ArrayList<String> genresArrList = new ArrayList<String>(DataBase.genres);
+	
+	for (String genre : genres) {
+		System.out.println(i++ +"- "+ genre);
+	}
+	
+	return genresArrList;
+	
+}
+	
+	
 
 }

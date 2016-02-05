@@ -40,7 +40,17 @@ public class Registered extends UserType{
 
 	@Override
 	public void userOption(int userOption) {
-		// TODO Auto-generated method stub
+		switch (userOption) {
+		
+		case 1:
+			break;
+		case 2:
+			return;
+		case 3:
+			return;
+		default:
+			break;
+	}
 		
 	}
 

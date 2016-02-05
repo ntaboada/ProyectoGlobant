@@ -75,4 +75,9 @@ public abstract class User  {
 	//Llama a los metodos para la opcion seleccionada
 	public abstract void  userOption(int option);
 	public abstract void  changeUserType();
+	
+	public String toString(){
+		return "- "+"User: " + getUsername();
+	}
+	
 }
