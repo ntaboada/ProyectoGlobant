@@ -2,8 +2,6 @@ package com.globantacademy.controller;
 
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import com.globantacademy.model.DataBase;
 import com.globantacademy.view.App;
@@ -39,6 +37,7 @@ public class Guest extends UserType{
 				{
 					System.out.println("Comic List: ");
 					DataBase.listComicCatalog();
+					System.out.println("");
 				}
 				else {
 					System.out.println("No comics availables in our catalog. Try next time ");
@@ -100,5 +99,7 @@ public class Guest extends UserType{
 	public  UserType changeUserType(){
 		return new Registered();
 	}
+
+
 }
 

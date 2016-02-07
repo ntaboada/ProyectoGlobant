@@ -73,11 +73,13 @@ public abstract class User  {
 	}
 
 	//Llama a los metodos para la opcion seleccionada
-	public abstract void  userOption(int option);
-	public abstract void  changeUserType();
+	public abstract void userOption(int option);
+	public abstract void changeUserType();
+	public abstract boolean assignAcceptedLoans(Loan loan);
+	
 	
 	public String toString(){
-		return "- "+"User: " + getUsername();
+		return " User:" + "'" + getUsername() + "' ";
 	}
 	
 }

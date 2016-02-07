@@ -46,7 +46,9 @@ public class NoAdmin extends User {
 		type.userOption(userOption);
 	}
 	
-	
+	public boolean assignAcceptedLoans(Loan loan){
+		return type.loanAccepted(loan);
+	}
 
 }
 	

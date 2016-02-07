@@ -14,10 +14,15 @@ public class ScannerClass {
 	
 	private static Scanner scan = new Scanner (System.in);
 	
-	public static void main(String[] args) {
-
-	}
 	
+	public static Scanner getScan() {
+		return scan;
+	}
+
+	public static void setScan(Scanner scan) {
+		ScannerClass.scan = scan;
+	}
+
 	public static int readInt(){
 		return scan.nextInt();
 	}
@@ -30,6 +35,12 @@ public class ScannerClass {
 		return scan.nextLine();
 	}
 	
+	public static void hasNext(){
+		while(scan.hasNext()) {
+		
+		}
+		
+	}
 	public static void close(){
 		scan.close();
 	}

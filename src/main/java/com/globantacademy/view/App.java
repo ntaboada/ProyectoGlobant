@@ -28,8 +28,8 @@ public class App {
 	public static void main(String[] args) {
 		System.out.println("¡Welcome to the Comic loan catalog!");
 		
-		UserType guest = new Guest();
-		User myUser = new NoAdmin(guest);
+		User myUser = new NoAdmin( new Guest());
+		//Agrego a la BD al Admin (usuario que esta por default)
 		DataBase.addUser(Admin.getInstance());
 		
 		interactingWithUser(myUser, true);

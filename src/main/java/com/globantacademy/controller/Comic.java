@@ -51,9 +51,12 @@ public class Comic implements Comparable<Comic> {
 	}
 
 	public String toString(){
-		return " Title:" + "'" + title + "'" + " Genre:"+ "'" + genre + "'" + "" + " Copies:" + "'" + copies + "'";
+		return " Title:" + "'" + title + "'" + " Genre:"+ "'" + genre + "'";
 	}
 
+	public String toStringWithCopies(){
+		return this.toString() +  "" + " Copies:" + "'" + copies + "'";
+	}
 	@Override
 	public int compareTo(Comic o) {
 		// TODO Auto-generated method stub
