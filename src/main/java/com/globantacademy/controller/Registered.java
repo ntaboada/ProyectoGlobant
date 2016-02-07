@@ -3,6 +3,7 @@ package com.globantacademy.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.globantacademy.model.DataBase;
+import com.globantacademy.resources.InvalidInputException;
 import com.globantacademy.resources.ScannerClass;
 import com.globantacademy.view.App;
 import com.globantacademy.view.Login;
@@ -10,11 +11,7 @@ import com.globantacademy.view.Login;
 public class Registered extends UserType{
 	
 	private String[] arrOptionsRegistered  = {"1) Visualize Comic Catalog", "2) Visualize your Loans", "3) Make a loan", "4) Finish a Loan", "5) Log Out"};
-	
-	
 
-	
-	
 	public Registered(){
 		arrOptions =  Arrays.copyOfRange(arrOptionsRegistered, 0, arrOptionsRegistered.length);
 	}
@@ -38,7 +35,7 @@ public class Registered extends UserType{
 
 	@Override
 	public void userOption(int userOption) {
-		
+		try{
 		switch (userOption) {
 		
 		case 1:
@@ -59,6 +56,8 @@ public class Registered extends UserType{
 			this.removeLoan();
 			break;
 		case 5:
+			return;
+		default:
 			break;
 		
 	}
@@ -66,7 +65,16 @@ public class Registered extends UserType{
 		if(userOption>=1 && userOption<=4){
 			App.interactingWithUser(Login.userLogged, true);
 		}
-		
+		else{
+			throw new InvalidInputException();
+		}
+	}
+	catch(InvalidInputException ex){
+		System.out.println(ex.getMessage());
+		System.out.println("");
+		App.interactingWithUser(Login.userLogged, true);
+	}	
+	
 	}
 
 	public UserType changeUserType() {

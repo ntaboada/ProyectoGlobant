@@ -4,14 +4,13 @@ package com.globantacademy.controller;
 import java.util.Arrays;
 import java.util.Scanner;
 import com.globantacademy.model.DataBase;
+import com.globantacademy.resources.InvalidInputException;
 import com.globantacademy.view.App;
 import com.globantacademy.view.Login;
 
 public class Guest extends UserType{
 
 	private String[] arrOptionsGuest  = {"1) Log In", "2) Visualize Comic Catalog", "3) Exit"};
-	
-	
 	
 	public Guest(){
 		arrOptions =  Arrays.copyOfRange(arrOptionsGuest, 0, arrOptionsGuest.length);
@@ -25,9 +24,9 @@ public class Guest extends UserType{
 
 	
 	public void userOption(int userOption) {
-
+		try{
+		
 		switch (userOption) {
-			
 			case 1:
 				this.logIn();
 				break;
@@ -39,15 +38,27 @@ public class Guest extends UserType{
 					DataBase.listComicCatalog();
 					System.out.println("");
 				}
-				else {
+				else 
+				{
 					System.out.println("No comics availables in our catalog. Try next time ");
 				}
-
 				return;
 			default:
 				break;
+	
+		}
+			if(userOption<1 || userOption>2){
+				throw new InvalidInputException();
+			}
+		
+		}
+		catch(InvalidInputException ex){
+			System.out.println(ex.getMessage());
+			System.out.println("");
+			//App.interactingWithUser(Login.userLogged, true);
 		}
 		
+	
 	}
 	
 	
@@ -75,24 +86,23 @@ public class Guest extends UserType{
 			Login.loginToTCatalog(user, password);
 				
 			if(Login.userLogged!=null){
+				scan.close();
 				return;
 			}
 			else{
 				System.out.println("Login Failed. Rewrite your credentials.");
 				this.logIn();
 			}
+			scan.close();
 			break;
-	
+		
 		case 2:
 			UserType guest = new Guest();
 			User guestUser = new NoAdmin(guest);
 			App.interactingWithUser(guestUser, true);
 			break;
 		}
-		
-	
-		
-		
+
 		
 	}
 	

@@ -2,13 +2,7 @@ package com.globantacademy.resources;
 
 public class InvalidInputException extends Exception{
 	
-	
-	   public InvalidInputException(){
-		   
-	   }
-		
-	   public InvalidInputException(String message) {
-	        super(message);
-	  }
-
+	public InvalidInputException(){
+			super( "Please select a valid number option");
+		}
 }

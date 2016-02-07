@@ -1,8 +1,6 @@
 package com.globantacademy.controller;
-import java.util.NoSuchElementException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import com.globantacademy.resources.InvalidInputException;
 import com.globantacademy.view.App;
 
 public abstract class User  {
@@ -64,8 +62,10 @@ public abstract class User  {
 			showMenu = false;
 			return showMenu;
 			}
-			catch(NoSuchElementException ex){
-				System.out.println(ex.getMessage());
+			catch(InputMismatchException ex){
+				System.out.println("Invalid option. You must enter a number from the list options");
+				System.out.println("");
+				App.interactingWithUser(user, showMenu);
 			}
 		}
 		scan.close();

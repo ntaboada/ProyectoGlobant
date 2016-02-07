@@ -2,6 +2,8 @@ package com.globantacademy.controller;
 
 import java.util.Arrays;
 
+import com.globantacademy.resources.InvalidInputException;
+
 public class NoAdmin extends User {
 	
 	
@@ -43,7 +45,13 @@ public class NoAdmin extends User {
 	
 	
 	public void userOption(int userOption){
-		type.userOption(userOption);
+		try{
+			type.userOption(userOption);	
+		}
+		catch(InvalidInputException ex){
+			System.out.println("Invalid input option");
+		}
+		
 	}
 	
 	public boolean assignAcceptedLoans(Loan loan){

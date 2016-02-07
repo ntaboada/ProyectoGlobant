@@ -1,7 +1,5 @@
 package com.globantacademy.view;
 import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import com.globantacademy.controller.User;
 import com.globantacademy.model.DataBase;
 

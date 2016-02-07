@@ -2,7 +2,9 @@ package com.globantacademy.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import com.globantacademy.model.DataBase;
+import com.globantacademy.resources.InvalidInputException;
 import com.globantacademy.resources.ScannerClass;
 import com.globantacademy.view.App;
 
@@ -35,7 +37,8 @@ public class Admin extends User{
 	
 	@Override
 	public void userOption(int userOption) {
-		
+	
+	try{	
 		switch (userOption) {
 		
 		case 1:
@@ -77,14 +80,32 @@ public class Admin extends User{
 		case 13: 
 			this.rejectLoan();
 			break;
+		case 14:
+			return;
 		default:
 			break;
 
 		}
 	
 		if(userOption>=1 && userOption<=13)
-		App.interactingWithUser(Admin.getInstance(), true);
+		{
+			App.interactingWithUser(Admin.getInstance(), true);
+		}
+		
+		else
+		{
+			throw new InvalidInputException();
+		}
 	}
+	
+	catch(InvalidInputException ex){
+		System.out.println(ex.getMessage());
+		System.out.println("");
+		App.interactingWithUser(Admin.getInstance(), true);
+	}	
+	
+	}
+	
 	
 
 	@Override

@@ -1,8 +1,7 @@
 package com.globantacademy.controller;
 
 import java.util.ArrayList;
-
-import com.globantacademy.model.DataBase;
+import com.globantacademy.resources.InvalidInputException;
 
 public abstract class UserType {
 
@@ -24,7 +23,6 @@ public abstract class UserType {
 		
 		if(this.lookForLoan(loan.getID())== null)
 		{ 	comicLoans.add(loan);
-			loan.getComic().increaseCopies();
 			return true;
 		}
 	
@@ -43,9 +41,10 @@ public abstract class UserType {
 		
 		return loanFound;
 	}
+	
 	public abstract UserType changeUserType();
 	public abstract String[] getArrOptions();
-	public abstract void  userOption(int userOption);
+	public abstract void  userOption(int userOption) throws InvalidInputException;
 	
 	
 }
